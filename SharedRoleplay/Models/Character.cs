@@ -14,8 +14,8 @@ namespace SharedRoleplay.Models
         public DateTime DateOfBirth { get; set; }
         public string Gender { get; set; }
         public string SexualOrientation { get; set; }
-        public int Height { get; set; }
-        public int Weight { get; set; }
+        public double Height { get; set; }
+        public double Weight { get; set; }
         public string EyeColor { get; set; }
         public string HeirColor { get; set; }
         public string Race { get; set; }
