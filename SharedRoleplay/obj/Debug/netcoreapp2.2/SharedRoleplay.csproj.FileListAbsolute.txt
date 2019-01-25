@@ -35,3 +35,8 @@ C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netc
 C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Stories\Details.g.cshtml.cs
 C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Stories\Edit.g.cshtml.cs
 C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Stories\Index.g.cshtml.cs
+C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Characters\Create.g.cshtml.cs
+C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Characters\Delete.g.cshtml.cs
+C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Characters\Details.g.cshtml.cs
+C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Characters\Edit.g.cshtml.cs
+C:\Users\jonah\OneDrive\lc101\Unit4\SharedRoleplay\SharedRoleplay\obj\Debug\netcoreapp2.2\Razor\Views\Characters\Index.g.cshtml.cs

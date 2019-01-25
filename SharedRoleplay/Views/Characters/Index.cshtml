@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SharedRoleplay.Models.Character>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Characters</h1>
+
+<p>
+    <a asp-action="Create">Create New Character</a>
+</p>
+<table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach (var item in Model)
+                    {
+                        <td>
+                            <div class="card" style="width: 18rem;">
+                                <a href="https://placeholder.com"><img src="https://via.placeholder.com/150.png?text=Place+holder+photo" class="card-img-top" alt="..."></a>
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                                    <p class="card-text">@Html.DisplayFor(modelItem => item.BackStory)</p>
+                                    <a class="btn btn-primary" href="/stories/details/@item.ID" role="button">Details</a>
+                                    <a class="btn btn-info" href="/stories/edit/@item.ID" role="button">Edit</a>
+                                    <a class="btn btn-danger" href="/stories/delete/@item.ID" role="button">Delete</a>
+                                </div>
+                            </div>
+                            <br />
+                        </td>
+                    }
+                </tr>
+
+            </tbody>
+        </table>*
+
