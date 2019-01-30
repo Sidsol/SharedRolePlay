@@ -9,29 +9,21 @@
 <p>
     <a asp-action="Create">Create New Story</a>
 </p>
-<table class="table">
-    <thead>
-    </thead>
-    <tbody>
-        <tr>
-            @foreach (var item in Model)
-            {
-                <td>
-                    <div class="mx-auto">
-                        <div class="card" style="width: 18rem;">
-                            <a href="https://placeholder.com"><img src="https://via.placeholder.com/150.png?text=Place+holder+photo" class="card-img-top" alt="..."></a>
-                            <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                                <p class="card-text">@Html.DisplayFor(modelItem => item.Genre)</p>
-                                <a class="btn btn-primary" href="/stories/details/@item.ID" role="button">Details</a>
-                                <a class="btn btn-info" href="/stories/edit/@item.ID" role="button">Edit</a>
-                                <a class="btn btn-danger" href="/stories/delete/@item.ID" role="button">Delete</a>
-                            </div>
-                        </div>
+
+<div class="container-fluid" style="overflow-x:scroll">
+    <div class="row justify-content-center" >
+        @foreach (var item in Model)
+        {
+                <div class="card" style="width: 18rem;">
+                    <a href="https://placeholder.com"><img src="https://via.placeholder.com/150.png?text=Place+holder+photo" class="card-img-top" alt="..."></a>
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Genre)</p>
+                        <a class="btn btn-primary" href="/stories/details/@item.ID" role="button">Details</a>
+                        <a class="btn btn-info" href="/stories/edit/@item.ID" role="button">Edit</a>
+                        <a class="btn btn-danger" href="/stories/delete/@item.ID" role="button">Delete</a>
                     </div>
-                    <br />
-                </td>
-            }
-        </tr>
-    </tbody>
-</table>
+                </div>
+        }
+    </div>
+</div>

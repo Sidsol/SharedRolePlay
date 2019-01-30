@@ -10,27 +10,39 @@
     <h4>Story</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Genre)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Genre)
         </dd>
+        @if (Model.Scenes == null)
+        {
+            <p>Add a new scene</p>
+        }
+        else
+        {
+            @foreach (var scene in Model.Scenes)
+            {
+                <dd class="col-sm-10">
+                    @Html.DisplayNameFor(modelScene => scene.Name)
+                </dd>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelScene => scene.Name)
+                </dd>
+            }
+        }
+
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a class="btn btn-primary" asp-action="Index">Back to List</a> |
+    <a class="btn btn-primary" asp-controller="Scenes" asp-action="Create" role="button">Add Scene</a>
 </div>

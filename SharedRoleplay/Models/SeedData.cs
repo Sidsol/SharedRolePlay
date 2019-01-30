@@ -13,7 +13,7 @@ namespace SharedRoleplay.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<SharedRoleplayContext>>()))
             {
-                // Look for any movies.
+                // Look for any Characters.
                 if (context.Character.Any())
                 {
                     return;   // DB has been seeded
@@ -53,6 +53,47 @@ namespace SharedRoleplay.Models
                     }
                 );
                 context.SaveChanges();
+
+                // Look for any Stories.
+                if (context.Story.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.Story.AddRange(
+                    new Story
+                    {
+                        Title = "Jane Doe",
+                        Genre = "Inspirational"
+                    },
+
+                    new Story
+                    {
+                        Title = "Jane Doe",
+                        Genre = "Inspirational"
+                    },
+                    new Story
+                    {
+                        Title = "Jane Doe",
+                        Genre = "Inspirational"
+                    },
+                    new Story
+                    {
+                        Title = "Jane Doe",
+                        Genre = "Inspirational"
+                    },
+                    new Story
+                    {
+                        Title = "Jane Doe",
+                        Genre = "Inspirational"
+                    },
+                    new Story
+                    {
+                        Title = "Jane Doe",
+                        Genre = "Inspirational"
+                    }
+                );
+
             }
         }
     }

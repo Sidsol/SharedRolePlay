@@ -14,8 +14,10 @@ namespace SharedRoleplay.Models
         {
         }
 
-        public DbSet<SharedRoleplay.Models.Story> Story { get; set; }
+        public DbSet<Story> Story { get; set; }
 
-        public DbSet<SharedRoleplay.Models.Character> Character { get; set; }
+        public DbSet<Character> Character { get; set; }
+
+        public DbSet<Scene> Scene { get; set; }
     }
 }

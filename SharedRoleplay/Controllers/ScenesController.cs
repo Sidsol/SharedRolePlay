@@ -5,26 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using SharedRoleplay.Models;
 
-namespace SharedRoleplay.Controllers
+namespace SharedRoleplay.Models
 {
-    public class StoriesController : Controller
+    public class ScenesController : Controller
     {
         private readonly SharedRoleplayContext _context;
 
-        public StoriesController(SharedRoleplayContext context)
+        public ScenesController(SharedRoleplayContext context)
         {
             _context = context;
         }
 
-        // GET: Stories
+        // GET: Scenes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Story.ToListAsync());
+            var sharedRoleplayContext = _context.Scene.Include(s => s.Story);
+            return View(await sharedRoleplayContext.ToListAsync());
         }
 
-        // GET: Stories/Details/5
+        // GET: Scenes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,42 @@ namespace SharedRoleplay.Controllers
                 return NotFound();
             }
 
-            var story = await _context.Story
+            var scene = await _context.Scene
+                .Include(s => s.Story)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (story == null)
+            if (scene == null)
             {
                 return NotFound();
             }
 
-            return View(story);
+            return View(scene);
         }
 
-        // GET: Stories/Create
+        // GET: Scenes/Create
         public IActionResult Create()
         {
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID");
             return View();
         }
 
-        // POST: Stories/Create
+        // POST: Scenes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,ReleaseDate,Genre")] Story story)
+        public async Task<IActionResult> Create([Bind("StoryID")] Scene scene)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(story);
+                _context.Add(scene);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(story);
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID", scene.ID);
+            return View(scene);
         }
 
-        // GET: Stories/Edit/5
+        // GET: Scenes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +75,23 @@ namespace SharedRoleplay.Controllers
                 return NotFound();
             }
 
-            var story = await _context.Story.FindAsync(id);
-            if (story == null)
+            var scene = await _context.Scene.FindAsync(id);
+            if (scene == null)
             {
                 return NotFound();
             }
-            return View(story);
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID", scene.ID);
+            return View(scene);
         }
 
-        // POST: Stories/Edit/5
+        // POST: Scenes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,ReleaseDate,Genre,Characters")] Story story)
+        public async Task<IActionResult> Edit(int id, [Bind("StoryID")] Scene scene)
         {
-            if (id != story.ID)
+            if (id != scene.ID)
             {
                 return NotFound();
             }
@@ -96,12 +100,12 @@ namespace SharedRoleplay.Controllers
             {
                 try
                 {
-                    _context.Update(story);
+                    _context.Update(scene);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StoryExists(story.ID))
+                    if (!SceneExists(scene.ID))
                     {
                         return NotFound();
                     }
@@ -112,10 +116,11 @@ namespace SharedRoleplay.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(story);
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID", scene.ID);
+            return View(scene);
         }
 
-        // GET: Stories/Delete/5
+        // GET: Scenes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +128,31 @@ namespace SharedRoleplay.Controllers
                 return NotFound();
             }
 
-            var story = await _context.Story
+            var scene = await _context.Scene
+                .Include(s => s.Story)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (story == null)
+            if (scene == null)
             {
                 return NotFound();
             }
 
-            return View(story);
+            return View(scene);
         }
 
-        // POST: Stories/Delete/5
+        // POST: Scenes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var story = await _context.Story.FindAsync(id);
-            _context.Story.Remove(story);
+            var scene = await _context.Scene.FindAsync(id);
+            _context.Scene.Remove(scene);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StoryExists(int id)
+        private bool SceneExists(int id)
         {
-            return _context.Story.Any(e => e.ID == id);
+            return _context.Scene.Any(e => e.ID == id);
         }
     }
 }

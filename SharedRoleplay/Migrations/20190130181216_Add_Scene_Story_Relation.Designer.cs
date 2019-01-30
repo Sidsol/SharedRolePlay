@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SharedRoleplay.Models;
 
 namespace SharedRoleplay.Migrations
 {
     [DbContext(typeof(SharedRoleplayContext))]
-    partial class SharedRoleplayContextModelSnapshot : ModelSnapshot
+    [Migration("20190130181216_Add_Scene_Story_Relation")]
+    partial class Add_Scene_Story_Relation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,19 +65,9 @@ namespace SharedRoleplay.Migrations
 
             modelBuilder.Entity("SharedRoleplay.Models.Scene", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("StoryID");
 
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Setting");
-
-                    b.Property<int?>("StoryID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("StoryID");
+                    b.HasKey("StoryID");
 
                     b.ToTable("Scene");
                 });
@@ -109,7 +101,8 @@ namespace SharedRoleplay.Migrations
                 {
                     b.HasOne("SharedRoleplay.Models.Story", "Story")
                         .WithMany("Scenes")
-                        .HasForeignKey("StoryID");
+                        .HasForeignKey("StoryID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
