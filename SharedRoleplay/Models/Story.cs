@@ -7,24 +7,20 @@ namespace SharedRoleplay.Models
 {
     public class Story
     {
-        //public Story()
-        //{
-        //    this.Characters = new List<Character>();
-        //}
 
         public int ID { get; set; }
+
+        [Required]
+        [Display(Name ="Story Title")]
         public string Title { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime DateCreated { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[Display(Name ="Date Created")]
+        //public DateTime DateCreated { get; set; }
 
+        [Display(Name ="Story Genre")]
         public string Genre { get; set; }
 
-        //public int CharacterId { get; set; }
-        //[ForeignKey("CharacterId")]
-        //public Character Character { get; set; }
-
-        public virtual ICollection<Character> Characters { get; set; }
         public virtual ICollection<Scene> Scenes { get; set; }
     }
 }

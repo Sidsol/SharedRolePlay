@@ -33,6 +33,7 @@ namespace SharedRoleplay.Controllers
             }
 
             var story = await _context.Story
+                .Include(s => s.Scenes)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (story == null)
             {

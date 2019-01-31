@@ -10,8 +10,8 @@ using SharedRoleplay.Models;
 namespace SharedRoleplay.Migrations
 {
     [DbContext(typeof(SharedRoleplayContext))]
-    [Migration("20190130174841_AddScenesController")]
-    partial class AddScenesController
+    [Migration("20190131035805_SeedData")]
+    partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,26 +48,36 @@ namespace SharedRoleplay.Migrations
 
                     b.Property<string>("Race");
 
+                    b.Property<int?>("SceneID");
+
                     b.Property<string>("SexualOrientation");
 
                     b.Property<string>("Species");
-
-                    b.Property<int?>("StoryID");
 
                     b.Property<double>("Weight");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("StoryID");
+                    b.HasIndex("SceneID");
 
                     b.ToTable("Character");
                 });
 
             modelBuilder.Entity("SharedRoleplay.Models.Scene", b =>
                 {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Setting");
+
                     b.Property<int>("StoryID");
 
-                    b.HasKey("StoryID");
+                    b.HasKey("ID");
+
+                    b.HasIndex("StoryID");
 
                     b.ToTable("Scene");
                 });
@@ -83,7 +93,8 @@ namespace SharedRoleplay.Migrations
 
                     b.Property<string>("Genre");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -92,15 +103,15 @@ namespace SharedRoleplay.Migrations
 
             modelBuilder.Entity("SharedRoleplay.Models.Character", b =>
                 {
-                    b.HasOne("SharedRoleplay.Models.Story")
+                    b.HasOne("SharedRoleplay.Models.Scene")
                         .WithMany("Characters")
-                        .HasForeignKey("StoryID");
+                        .HasForeignKey("SceneID");
                 });
 
             modelBuilder.Entity("SharedRoleplay.Models.Scene", b =>
                 {
                     b.HasOne("SharedRoleplay.Models.Story", "Story")
-                        .WithMany()
+                        .WithMany("Scenes")
                         .HasForeignKey("StoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

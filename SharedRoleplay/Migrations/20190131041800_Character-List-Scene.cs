@@ -2,7 +2,7 @@
 
 namespace SharedRoleplay.Migrations
 {
-    public partial class Add_Scene_Story_Relation : Migration
+    public partial class CharacterListScene : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

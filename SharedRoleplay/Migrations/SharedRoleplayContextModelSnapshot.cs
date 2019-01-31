@@ -46,17 +46,17 @@ namespace SharedRoleplay.Migrations
 
                     b.Property<string>("Race");
 
+                    b.Property<int?>("SceneID");
+
                     b.Property<string>("SexualOrientation");
 
                     b.Property<string>("Species");
-
-                    b.Property<int?>("StoryID");
 
                     b.Property<double>("Weight");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("StoryID");
+                    b.HasIndex("SceneID");
 
                     b.ToTable("Character");
                 });
@@ -71,7 +71,7 @@ namespace SharedRoleplay.Migrations
 
                     b.Property<string>("Setting");
 
-                    b.Property<int?>("StoryID");
+                    b.Property<int>("StoryID");
 
                     b.HasKey("ID");
 
@@ -86,12 +86,10 @@ namespace SharedRoleplay.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated")
-                        .ValueGeneratedOnAddOrUpdate();
-
                     b.Property<string>("Genre");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -100,16 +98,17 @@ namespace SharedRoleplay.Migrations
 
             modelBuilder.Entity("SharedRoleplay.Models.Character", b =>
                 {
-                    b.HasOne("SharedRoleplay.Models.Story")
+                    b.HasOne("SharedRoleplay.Models.Scene")
                         .WithMany("Characters")
-                        .HasForeignKey("StoryID");
+                        .HasForeignKey("SceneID");
                 });
 
             modelBuilder.Entity("SharedRoleplay.Models.Scene", b =>
                 {
                     b.HasOne("SharedRoleplay.Models.Story", "Story")
                         .WithMany("Scenes")
-                        .HasForeignKey("StoryID");
+                        .HasForeignKey("StoryID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

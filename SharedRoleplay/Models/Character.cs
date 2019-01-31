@@ -10,11 +10,6 @@ namespace SharedRoleplay.Models
     public class Character
     {
 
-        //public Character()
-        //{
-        //    this.Stories = new List<Story>();
-        //}
-
         public int ID { get; set; }
 
         // Collection of information to define a Character.
@@ -34,13 +29,11 @@ namespace SharedRoleplay.Models
         public string BackStory { get; set; }
         public string Miscellaneous { get; set; }
 
-        // Foreign Key linking Characters to Stories
+        // Foreign Key linking Characters to Scenes
 
-        //public int StoryId { get; set; }
-        //[ForeignKey("StoryId")]
-        //public virtual Story Story { get; set; }
+        //public virtual ICollection<Scene> Scene { get; set; }
 
-        //public virtual ICollection<Story> Stories { get; set; }
+        
 
     }
 }

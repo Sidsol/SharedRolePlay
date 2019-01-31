@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SharedRoleplay.Models;
 
-namespace SharedRoleplay.Models
+namespace SharedRoleplay.Controllers
 {
     public class ScenesController : Controller
     {
@@ -46,7 +47,7 @@ namespace SharedRoleplay.Models
         // GET: Scenes/Create
         public IActionResult Create()
         {
-            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID");
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "Title");
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace SharedRoleplay.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StoryID")] Scene scene)
+        public async Task<IActionResult> Create([Bind("ID,Name,Setting,StoryID")] Scene scene)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +64,7 @@ namespace SharedRoleplay.Models
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID", scene.ID);
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "Title", scene.StoryID);
             return View(scene);
         }
 
@@ -80,7 +81,7 @@ namespace SharedRoleplay.Models
             {
                 return NotFound();
             }
-            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID", scene.ID);
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "Title", scene.StoryID);
             return View(scene);
         }
 
@@ -89,7 +90,7 @@ namespace SharedRoleplay.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StoryID")] Scene scene)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Setting,StoryID")] Scene scene)
         {
             if (id != scene.ID)
             {
@@ -116,7 +117,7 @@ namespace SharedRoleplay.Models
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "ID", scene.ID);
+            ViewData["StoryID"] = new SelectList(_context.Story, "ID", "Title", scene.StoryID);
             return View(scene);
         }
 

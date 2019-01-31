@@ -14,10 +14,10 @@ namespace SharedRoleplay.Models
                     DbContextOptions<SharedRoleplayContext>>()))
             {
                 // Look for any Characters.
-                if (context.Character.Any())
-                {
-                    return;   // DB has been seeded
-                }
+                //if (context.Character.Any())
+                //{
+                //    return;   // DB has been seeded
+                //}
 
                 context.Character.AddRange(
                     new Character
@@ -64,7 +64,7 @@ namespace SharedRoleplay.Models
                     new Story
                     {
                         Title = "Jane Doe",
-                        Genre = "Inspirational"
+                        Genre = "Inspirational" 
                     },
 
                     new Story
@@ -91,6 +91,62 @@ namespace SharedRoleplay.Models
                     {
                         Title = "Jane Doe",
                         Genre = "Inspirational"
+                    }
+                );
+
+                //if (context.Scene.Any())
+                //{
+                //    return;
+                //}
+
+                context.Scene.AddRange(
+                    new Scene
+                    {
+                        Name = "Act 1",
+                        Setting = "Place 1",
+                        StoryID = 1
+                    },
+                    new Scene
+                    {
+                        Name = "Act 2",
+                        Setting = "Place 2",
+                        StoryID = 1
+                    },
+                    new Scene
+                    {
+                        Name = "Act 3",
+                        Setting = "Place 3",
+                        StoryID = 1
+                    },
+                    new Scene
+                    {
+                        Name = "Act 4",
+                        Setting = "Place 4",
+                        StoryID = 1
+                    },
+                                        new Scene
+                                        {
+                                            Name = "Act 1",
+                                            Setting = "Place 1",
+                                            StoryID = 2
+                                        },
+                    new Scene
+                    {
+                        Name = "Act 2",
+                        Setting = "Place 2",
+                        StoryID = 2
+                    },
+                    new Scene
+                    {
+                        Name = "Act 3",
+                        Setting = "Place 3",
+                        StoryID = 2
+                    },
+                    new Scene
+                    {
+                        Name = "Act 4",
+                        Setting = "Place 4",
+                        StoryID = 2
                     }
                 );
 

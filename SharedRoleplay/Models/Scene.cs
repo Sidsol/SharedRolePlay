@@ -14,7 +14,10 @@ namespace SharedRoleplay.Models
         public string Name { get; set; }
         public string Setting { get; set; }
 
+        public int StoryID { get; set; }
+ 
         public virtual Story Story { get; set; }
 
+        public virtual ICollection<Character> Characters { get; set; }
     }
 }

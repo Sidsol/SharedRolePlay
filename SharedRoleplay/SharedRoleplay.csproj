@@ -6,6 +6,15 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations5\20190130204419_UpdatedScenes.cs" />
+    <Compile Remove="Migrations5\20190130204419_UpdatedScenes.Designer.cs" />
+    <Compile Remove="Migrations5\20190130224112_NewRelationships.cs" />
+    <Compile Remove="Migrations5\20190130224112_NewRelationships.Designer.cs" />
+    <Compile Remove="Migrations5\20190131000942_FixedRelationships.cs" />
+    <Compile Remove="Migrations5\20190131000942_FixedRelationships.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
