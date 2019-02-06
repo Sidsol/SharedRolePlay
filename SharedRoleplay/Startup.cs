@@ -14,6 +14,7 @@ using SharedRoleplay.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SharedRoleplay.Models;
+using SignalRChat.Hubs;
 
 namespace SharedRoleplay
 {
@@ -47,6 +48,8 @@ namespace SharedRoleplay
 
             services.AddDbContext<SharedRoleplayContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SharedRoleplayContext")));
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +72,11 @@ namespace SharedRoleplay
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
 
             app.UseMvc(routes =>
             {
