@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20190208003854_Linked_User_to_Stories_Characters.cs" />
+    <Compile Remove="Data\Migrations\20190208003854_Linked_User_to_Stories_Characters.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190208011252_Linked_User_to_Stories_Characters.cs" />
+    <Compile Remove="Data\Migrations\20190208011252_Linked_User_to_Stories_Characters.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190208011350_Linked_User_to_Stories_Characters.cs" />
+    <Compile Remove="Data\Migrations\20190208011350_Linked_User_to_Stories_Characters.Designer.cs" />
     <Compile Remove="Migrations5\20190130204419_UpdatedScenes.cs" />
     <Compile Remove="Migrations5\20190130204419_UpdatedScenes.Designer.cs" />
     <Compile Remove="Migrations5\20190130224112_NewRelationships.cs" />

@@ -29,11 +29,11 @@ namespace SharedRoleplay.Models
         public string BackStory { get; set; }
         public string Miscellaneous { get; set; }
 
-        // Foreign Key linking Characters to Scenes
+        [Required]
+        public string ApplicationUserId { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
-        //public virtual ICollection<Scene> Scene { get; set; }
-
-        
-
+        public virtual ICollection<CharacterScene> CharacterScenes { get; set; }
     }
 }

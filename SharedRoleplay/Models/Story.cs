@@ -12,6 +12,7 @@ namespace SharedRoleplay.Models
 
         [Required]
         [Display(Name ="Story Title")]
+        [StringLength(250, ErrorMessage = "Name is limited to 250 characters in length.", MinimumLength = 3)]
         public string Title { get; set; }
 
         //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
@@ -20,6 +21,11 @@ namespace SharedRoleplay.Models
 
         [Display(Name ="Story Genre")]
         public string Genre { get; set; }
+
+        [Required]
+        public string ApplicationUserId { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<Scene> Scenes { get; set; }
     }

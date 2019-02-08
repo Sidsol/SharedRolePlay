@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SharedRoleplay.Data;
 using SharedRoleplay.Models;
 
 namespace SharedRoleplay.Controllers
 {
     public class CharactersController : Controller
     {
-        private readonly SharedRoleplayContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CharactersController(SharedRoleplayContext context)
+        public CharactersController(ApplicationDbContext context)
         {
             _context = context;
         }

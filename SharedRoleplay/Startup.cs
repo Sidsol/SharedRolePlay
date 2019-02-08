@@ -46,8 +46,8 @@ namespace SharedRoleplay
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<SharedRoleplayContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SharedRoleplayContext")));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
             services.AddSignalR();
         }

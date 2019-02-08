@@ -12,6 +12,7 @@ using SharedRoleplay.Models;
 using SharedRoleplay;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SharedRoleplay.Data;
 
 namespace SharedRoleplay
 {
@@ -27,7 +28,7 @@ namespace SharedRoleplay
 
                 try
                 {
-                    var context = services.GetRequiredService<SharedRoleplayContext>();
+                    var context = services.GetRequiredService<ApplicationDbContext>();
                     context.Database.Migrate();
                     SeedData.Initialize(services);
                 }

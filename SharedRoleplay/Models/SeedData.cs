@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SharedRoleplay.Data;
 using System;
 using System.Linq;
 
@@ -9,15 +10,15 @@ namespace SharedRoleplay.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new SharedRoleplayContext(
+            using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<SharedRoleplayContext>>()))
+                    DbContextOptions<ApplicationDbContext>>()))
             {
                 // Look for any Characters.
-                //if (context.Character.Any())
-                //{
-                //    return;   // DB has been seeded
-                //}
+                if (context.Character.Any())
+                    {
+                        return;   // DB has been seeded
+                    }
 
                 context.Character.AddRange(
                     new Character
@@ -25,7 +26,9 @@ namespace SharedRoleplay.Models
                         Name = "Jane Doe",
                         DateOfBirth = DateTime.Parse("1989-2-12"),
                         Height = 5.9,
-                        Weight = 135
+                        Weight = 135,
+                        ApplicationUserId = "1"
+                       
                     },
 
                     new Character
@@ -33,7 +36,8 @@ namespace SharedRoleplay.Models
                         Name = "Jane Doe",
                         DateOfBirth = DateTime.Parse("1989-2-12"),
                         Height = 5.9,
-                        Weight = 135
+                        Weight = 135,
+                        ApplicationUserId = "1"
                     },
 
                     new Character
@@ -41,7 +45,8 @@ namespace SharedRoleplay.Models
                         Name = "Jane Doe",
                         DateOfBirth = DateTime.Parse("1989-2-12"),
                         Height = 5.9,
-                        Weight = 135
+                        Weight = 135,
+                        ApplicationUserId = "1"
                     },
 
                     new Character
@@ -49,7 +54,8 @@ namespace SharedRoleplay.Models
                         Name = "Jane Doe",
                         DateOfBirth = DateTime.Parse("1989-2-12"),
                         Height = 5.9,
-                        Weight = 135
+                        Weight = 135,
+                        ApplicationUserId = "1"
                     }
                 );
                 context.SaveChanges();
@@ -94,10 +100,10 @@ namespace SharedRoleplay.Models
                     }
                 );
 
-                //if (context.Scene.Any())
-                //{
-                //    return;
-                //}
+                if (context.Scene.Any())
+                {
+                    return;
+                }
 
                 context.Scene.AddRange(
                     new Scene
